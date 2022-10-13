@@ -3,22 +3,6 @@ import csv
 import os
 import tkinter as tk
 from tkinter import messagebox as mb
-
-HM_RE_DIRECTORY = os.getcwd()
-# in
-CSV_IN = 'csv_files_in'
-FILE_IN = 'phonebook_raw.csv'
-FULL_PATH_IN = os.path.join(HM_RE_DIRECTORY, CSV_IN, FILE_IN)
-# out
-CSV_OUT = 'csv_files_out'
-FILE_OUT = 'phonebook.csv'
-FULL_PATH_OUT = os.path.join(HM_RE_DIRECTORY, CSV_OUT, FILE_OUT)
-
-new_list = []
-
-with open(FULL_PATH_IN, encoding='utf-8') as f:
-    rows = csv.reader(f, delimiter=",")
-    contacts_list = list(rows)
     
 
 def create_fio():
@@ -65,6 +49,7 @@ def duplicates_combining(all_list):
                     line[6] = contact[6]
 
     for contact in all_list:
+        print(contact)
         if contact not in new_list:
             new_list.append(contact)
 
@@ -102,5 +87,18 @@ class Window_start(tk.Tk):
             datawriter.writerows(new_list)
 
 if __name__ == '__main__':
+    HM_RE_DIRECTORY = os.getcwd()
+    # in
+    CSV_IN = 'csv_files_in'
+    FILE_IN = 'phonebook_raw.csv'
+    FULL_PATH_IN = os.path.join(HM_RE_DIRECTORY, CSV_IN, FILE_IN)
+    # out
+    CSV_OUT = 'csv_files_out'
+    FILE_OUT = 'phonebook.csv'
+    FULL_PATH_OUT = os.path.join(HM_RE_DIRECTORY, CSV_OUT, FILE_OUT)
+    new_list = []
+    with open(FULL_PATH_IN, encoding='utf-8') as f:
+        rows = csv.reader(f, delimiter=",")
+        contacts_list = list(rows)
     win = Window_start()
     win.mainloop()
